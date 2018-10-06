@@ -11,6 +11,8 @@ require 'random_data'
  end
  posts = Post.all
 
+
+
  # Create Comments
  # #3
  100.times do
@@ -20,6 +22,10 @@ require 'random_data'
      body: RandomData.random_paragraph
    )
  end
+
+puts "#{Post.count}"
+Post.find_or_create_by!(title:"Unique Title", body:"I've created an unique body.")
+puts "#{Post.count}"
 
  puts "Seed finished"
  puts "#{Post.count} posts created"
