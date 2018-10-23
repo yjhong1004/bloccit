@@ -24,12 +24,10 @@ require 'random_data'
  end
 
 
-Post.find_or_create_by!(title:"Unique Title", body:"I've created an unique body.")
+new_post = Post.find_or_create_by!(title:"Unique Title", body:"I've created an unique body.")
 puts "#{Post.count}"
-
-
-Post.find_or_create_by!(title:"Unique Title", body:"I've created an amazing body.")
-puts "#{Post.count}"
+new_comment = Comment.find_or_create_by!(body:"This is an entirely new body", post: new_post)
+puts "#{Comment.count}"
 
  puts "Seed finished"
  puts "#{Post.count} posts created"
