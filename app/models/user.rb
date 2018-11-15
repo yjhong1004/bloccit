@@ -15,13 +15,13 @@ class User < ApplicationRecord
  # #6
    has_secure_password
 
-   def format_name
-     if name
-       name_array = []
-       name.split.each do |name_part|
-         name_array << name_part.capitalie
-       end
-       self.name = name_array.join(" ")
-     end
-   end
+   # def format_name
+   #   if name
+   #     name_array = []
+   #     name.split.each do |name_part|
+   #       name_array << name_part.capitalie
+   #     end
+   #     self.name = name_array.join(" ")
+   #   end
+   # end
 end
