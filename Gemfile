@@ -86,3 +86,6 @@ end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+
+# Used for encrypting User passwords
+gem 'bcrypt'
