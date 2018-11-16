@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   end
   resources :questions
   resources :users, only: [:new, :create]
-
+  post 'users/confirm' => 'users#confirm'
   get 'about' => 'welcome#about'
   get 'welcome/contact'
   get 'welcome/faq'
-
+ 
   root 'welcome#index'
 end
