@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase if email.present? }
-  before_save :format_name
+  # before_save :format_name
  # #3
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
  # #4
