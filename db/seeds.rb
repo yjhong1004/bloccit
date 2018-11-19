@@ -50,7 +50,7 @@ topics = Topic.all
  # Create sponsored_posts
  15.times do
    SponsoredPost.create!(
-     topic: topics.sample
+     topic: topics.sample,
      title: RandomData.random_sentence,
      body: RandomData.random_paragraph,
      price: 99
@@ -59,7 +59,7 @@ topics = Topic.all
 
  user = User.first
  user.update_attributes!(
-   email: 'yjhong1004@gmail.com'
+   email: 'yjhong1004@gmail.com',
    password: 'helloworld'
  )
 
