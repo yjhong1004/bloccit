@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
 
   before_action :require_sign_in, except: :show
-  before_action :authorize_user, except: [:show, :new, :create]
-  before_action :stop_moderator, only: [:new, :delete]
+  #edit, update, delete are only for admin and the post's user
+  before_action :authorize_user, except: [:show, :new, :create, :edit, :update]
+  #edit and update are for post's user, moderator, and admin
+  before_action :stop_unless_moderator, only: [:edit, :update]
 
   def show
     @post = Post.find(params[:id])
@@ -68,11 +70,11 @@ class PostsController < ApplicationController
        redirect_to [post.topic, post]
      end
    end
-   def stop_moderator
-     post = Post.find(params[:id]) 
-     if current_user.moderator?
-       flash[:alert] = "You must be the post's user or admin to do that."
-       redirect_to[post.topic, post]
+   def stop_unless_moderator
+     post = Post.find(params[:id])
+     unless current_user == post.user || current_user.admin? || current_user.moderator?
+       flash[:alert] = "You must be an admin, moderator, or post's user to do that."
+       redirect_to [post.topic, post]
      end
    end
 end

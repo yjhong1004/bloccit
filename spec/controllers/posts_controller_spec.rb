@@ -480,7 +480,7 @@ context "member user doing CRUD on a post they own" do
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, params: {topic_id: my_topic.id, id: my_post.id}
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to redirect_to [my_topic, my_post]
       end
     end
   end

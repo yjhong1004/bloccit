@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
 
   before_action :require_sign_in, except: [:index, :show]
+  #new, create, delete are only for admin
   before_action :authorize_user, except: [:index, :show, :edit, :update]
+  #only edit, update are for admin and moderator
   before_action :stop_all_not_moderator_admin, only: [:edit, :update]
 
   def index
