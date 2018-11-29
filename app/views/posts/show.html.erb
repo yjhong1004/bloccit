@@ -1,7 +1,7 @@
 <div class="row">
-  <% @topic.posts.each do |post| %>
-    <%= render partial: 'posts/post', locals: {post: post} %>
-  <% end %>
+
+    <%= render partial: 'posts/post', locals: {post: @post} %>
+
 </div>
 
  <div class="row">
