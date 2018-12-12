@@ -102,4 +102,16 @@ RSpec.describe User, type: :model do
        expect(known_user.avatar_url(48)).to eq(expected_gravatar)
      end
    end
+
+   describe "#submitted_posts(post)" do
+     before do
+       topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+     end
+     it "returns `nil` if the user has not submitted any posts" do
+       expect(user.submitted_posts(@post)).to be_nil
+     end
+     it "returns the appropriate post if it exists" do
+       expect(user.submitted_posts(@post).to eq(user.posts))
+   end
 end
