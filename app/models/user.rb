@@ -19,11 +19,11 @@ class User < ApplicationRecord
    enum role: [:member, :admin]
 
    def favorite_for(post)
-        favorites.where(post_id: post.id).first
+       favorites.where(post_id: post.id).first
    end
 
    def submitted_posts(post)
-     user.posts.all
+       user.posts.all
    end
 
    def avatar_url(size)
