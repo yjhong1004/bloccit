@@ -22,8 +22,8 @@
  <h2>Posts</h2>
  <% if user_has_any_posts? %>
     <%= render @user.posts %>
-  <% else %>
-    <% "{user.name} has not submitted any posts yet." %>
+  <% else  %>
+     <%= @user.name %> <p>has not submitted any posts yet.</p>
  <% end %>
 
 
@@ -31,4 +31,4 @@
  <%= render @user.comments %>
 
  <h2>Favorites</h2>
- <%= render @user.favorites %>
+<%= render partial: @user.favorites %>

@@ -20,66 +20,48 @@ end
 topics = Topic.all
 
  # Create Posts
- 50.times do
-   post = Post.create!(
-     user: users.sample,
-     topic:  topics.sample,
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph
-   )
+50.times do
+  post = Post.create!(
+    user: users.sample,
+    topic:  topics.sample,
+    title:  RandomData.random_sentence,
+    body:   RandomData.random_paragraph
+  )
 
+  post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 end
- post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
- rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
+posts = Post.all
 
- # Create Comments
- 100.times do
-   Comment.create!(
-     user: users.sample,
-     post: posts.sample,
-     body: RandomData.random_paragraph
-   )
- end
-
- # Create Questions
- 100.times do
-   Question.create!(
-     title: RandomData.random_sentence,
-     body: RandomData.random_paragraph,
-     resolved: false
-   )
- end
-
- # Create sponsored_posts
- 15.times do
-   SponsoredPost.create!(
-     topic: topics.sample,
-     title: RandomData.random_sentence,
-     body: RandomData.random_paragraph,
-     price: 99
-   )
- end
-
- # Create an admin user
-  admin = User.create!(
-    name:     'Admin User',
-    email:    'admin@example.com',
-    password: 'helloworld',
-    role:     'admin'
+# Create Comments
+100.times do
+  Comment.create!(
+    user: users.sample,
+    post: posts.sample,
+    body: RandomData.random_paragraph
   )
+end
 
-  # Create a member
-  member = User.create!(
-    name:     'Member User',
-    email:    'member@example.com',
-    password: 'helloworld'
-  )
+# Create an admin user
+admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
+)
 
- puts "Seed finished"
- puts "#{User.count} users created"
- puts "#{Topic.count} topics created"
- puts "#{Post.count} posts created"
- puts "#{Vote.count} votes created"
- puts "#{SponsoredPost.count} sponsored posts created"
- puts "#{Comment.count} comments created"
- puts "#{Question.count} questions created"
+# Create a member
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld'
+)
+
+puts "Seed finished"
+puts "#{User.count} users created"
+puts "#{Topic.count} topics created"
+puts "#{Post.count} posts created"
+puts "#{Vote.count} votes created"
+puts "#{SponsoredPost.count} sponsored posts created"
+puts "#{Comment.count} comments created"
+puts "#{Question.count} questions created"
