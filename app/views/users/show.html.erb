@@ -31,4 +31,6 @@
  <%= render @user.comments %>
 
  <h2>Favorites</h2>
-<%= render partial: @user.favorites %>
+ <% @user.favorites.each do |favorite| %>
+  <%= render favorite.post %>
+ <% end %>
